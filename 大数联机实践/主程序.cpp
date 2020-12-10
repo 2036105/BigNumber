@@ -19,4 +19,16 @@ int main() {
 	cout << a(2) << '\n';
 	a = a.inte(2);
 	cout << a(2) << '\n';
+	Polynomial b;
+	b.degree = 2;
+	b.c.push_back(1);b.c.push_back(-2);b.c.push_back(1);
+	cout << b<<'\n';
+	Polynomial c;
+	c.degree = 1;
+	c.c.push_back(-1);c.c.push_back(1);
+	cout << c << '\n';
+	Polynomial d = b / c;
+	cout << d << '\n';
+	d.set(3, 1.0, 3.0, 3.0, 1.0);
+	cout << d << '\n';
 }

@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Polynomial.cpp" />
     <ClCompile Include="主程序.cpp" />
   </ItemGroup>
   <ItemGroup>
