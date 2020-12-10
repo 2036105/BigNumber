@@ -52,11 +52,47 @@ istream& operator>>(istream& input, Int& a) {
 	}
 	return input;
 }
-string& operator>>(const string&source,Int& target) {
-	
+string& operator>>(const string source,Int& target) {
+	target.data.clear();
+	string::const_iterator init = source.begin();
+	if (*init == '-') { target.nega = 1;
+	init++;
+	}
+	string::const_iterator fin = source.end() ;
+	fin--;
+	string::iterator temp;
+	int i;
+	if (fin == init) {
+		target.data.push_back(*fin - '0');
+	}
+	else {
+		int TempSect = 0;
+		while (fin >= init) {
+			for (i = 0;i < 31&&fin!=init;i++) {
+				for (temp = init;temp != fin;temp++) {
+					*(temp + 1) += CarryOver(*temp);
+				}
+				TempSect += CarryOver(*temp)<<i;
+				while (*init == '0') { init++; }
+			}
+			target.data.push_back(TempSect);
+			
+		}
+	}
+		
 }
 
 Int& Int::operator+(const Int& bb) {
 	Int Temp(*this);
 }
 
+inline bool CarryOver(char&in) {
+	if ((in - '0') % 2) {
+		in = (in - '0') / 2 + '0';
+		return 1;
+	}
+	else {
+		in = (in - '0') / 2 + '0';
+		return 0;
+	}
+}
