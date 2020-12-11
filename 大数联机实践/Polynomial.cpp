@@ -287,15 +287,12 @@ std::ostream& operator<<(std::ostream& out, const Polynomial& bb) {
 }
 
 
-void Polynomial::set(int indegree,...) {
-	va_list parg;
-	//va_list* parg = &arg;
-	__crt_va_start(parg, indegree + 1);
+void Polynomial::set(int indegree,std::initializer_list<double>in) {
+	auto endflag = in.end();
 	c.clear();
-	for (int i = 0;i <= indegree;++i) {
-		c.push_back(__crt_va_arg(parg, double));
+	for (auto i=in.begin();i != endflag;++i) {
+		c.push_back(*i);
 	}
 	std::reverse(c.begin(), c.end());
-	__crt_va_end(parg);
-	degree = indegree;
+	degree =indegree;
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include<iostream>
 #include<vector>
-
+#include<initializer_list>
 //多项式
 //函数实现在对应的Cpp中
 class Polynomial
@@ -41,10 +41,9 @@ public:
 	Polynomial& operator/=(const double bb);
 	friend std::ostream& operator<<(std::ostream& out, const Polynomial& bb);
 	friend std::string& operator<<(std::string&out, const Polynomial& bb);
-	//第一个参量是度数
 	//输入每个项,从高到低输入
-	//系数一定要写成小数,即使是在后面填个.0也要做
-	void set(int degree,...);
+	//先输度数,把系数放在大括号内
+	void set(int indegree,std::initializer_list<double> in);
 private:
 
 };

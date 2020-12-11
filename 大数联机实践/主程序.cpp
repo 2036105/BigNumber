@@ -29,6 +29,6 @@ int main() {
 	cout << c << '\n';
 	Polynomial d = b / c;
 	cout << d << '\n';
-	d.set(3, 1.0, 3.0, 3.0, 1.0);
+	d.set({ 1, 3, 3, 1 });
 	cout << d << '\n';
 }
