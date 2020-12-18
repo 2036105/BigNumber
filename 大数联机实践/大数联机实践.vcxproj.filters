@@ -29,5 +29,8 @@
     <ClInclude Include="Polynomial.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="D:\头\Euler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
