@@ -1,6 +1,7 @@
 #include<iostream>
 
 #include"Polynomial.h"
+#include"Euler.h"
 using namespace std;
 //HOMODELUNA@outlook.com
 
