@@ -141,9 +141,10 @@
   <ItemGroup>
     <ClCompile Include="Polynomial.cpp" />
     <ClCompile Include="主程序.cpp" />
+    <ClCompile Include="BigNumbers.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\BigNumbers.h" />
+    <ClInclude Include="BigNumbers.h" />
     <ClInclude Include="D:\头\Euler.h" />
     <ClInclude Include="Polynomial.h" />
   </ItemGroup>

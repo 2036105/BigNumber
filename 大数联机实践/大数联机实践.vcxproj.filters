@@ -21,15 +21,18 @@
     <ClCompile Include="Polynomial.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="BigNumbers.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\BigNumbers.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Polynomial.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="D:\头\Euler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BigNumbers.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
