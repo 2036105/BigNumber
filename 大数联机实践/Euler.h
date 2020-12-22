@@ -5,6 +5,7 @@
 #include<set>
 #include<list>
 using namespace std;
+typedef long long LL;
 //欧拉筛是埃拉托斯特尼筛法的增强版
 //每个合数只需要被筛一遍,因而不需要太多计算
 //占的空间会多一些
@@ -86,4 +87,74 @@ vector<long> PrimeFactorize(long in) {
 		}
 	}
 	return Vout;
+}
+//快速幂
+long long  Fastmod(long long  a, long long  n, long long b) {
+	if (n <= 2) {
+		if (n == 2) { return a*a % b; }
+		else if (n == 1) { return a% b; }
+		else { return 1 % b; }
+	}
+	if (n % 2) {
+		return Fastmod(a, n / 2, b) * Fastmod(a, n / 2 + 1, b) % b;
+	}
+	else {
+		return Fastmod(a, n / 2, b) * Fastmod(a, n / 2 , b) % b;
+	}
+}
+//扩展欧几里得算法
+inline long long extGCD(long long a, long long b, long long& x, long long& y) {
+	long long d = a;
+	if (b != 0) {
+		d = extGCD(b, a & b, y, x);
+		y -= a / b * x;
+	}
+	else { x = 1;y = 0; }
+	return d;
+}
+long long GCD(long long a, long long b) {
+	long long temp;
+	//比较两个数的大小，值大的数为a，值小的数为b
+	if (a < b) {
+		temp = a;
+		a = b;
+		b = temp;
+	}
+	//求余
+	while (b != 0) {
+		temp = a % b;
+		a = b;
+		b = temp;
+	}
+	return a;
+}
+//欧拉函数
+inline long long Phi(int N) {
+	long long ti=0;
+	for (long long i = 1;i < N;++i) {
+		if (GCD(i, N) == 1) { ++ti;}
+	}
+	return ti;
+}
+//数论倒数
+inline long long NTinv(long long a, long long mod) {
+	return Fastmod(a, Phi(mod) - 1, mod);
+}
+//排列
+//long long很容易撑爆,小心
+long long Permutation(long long all, long long some) {
+	long long temp=1;
+	for(LL i=all-some+1;i<=all;++i){
+		temp *= i;
+	}
+}
+long long Conbination(long long all, long long some) {
+	long long temp = 1;
+	for (LL i = all - some + 1;i <= all;++i) {
+		temp *= i;
+	}
+	for (LL i = 1;i <= some;++i) {
+		temp /= i;
+	}
+	return temp;
 }
