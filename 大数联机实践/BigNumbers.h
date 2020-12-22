@@ -28,7 +28,7 @@ public:
 	inline bool  operator>=( Int& bb) { return !(*this < bb); }
 	inline bool  operator<=(Int& bb) { return !(*this > bb); }
 	Int& operator+(Int&bb);
-	
+	Int& operator-(Int& bb);
 };
 
 

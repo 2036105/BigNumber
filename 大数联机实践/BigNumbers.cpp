@@ -190,74 +190,9 @@ Int& Int::operator+(Int& bb) {
 		}
 	}
 }
-
-Int& Int::operator+(Int& bb) {
+Int& Int::operator-(Int& bb) {
 	Int Temp(*this);
 	if (bb.nega) {
-		if (this->nega) {
-			Temp.nega = 0;
-			if (bb < Temp) {
-				int sz = min(this->data.size(), bb.data.size());
-				Temp = bb;
-				for (int i = 0;i < sz;++i) {
-					Temp.data[i] -= this->data[i];
-				}
-				sz = max(this->data.size(), bb.data.size());
-				for (int i = 0;i < sz;++i) {
-					if (Temp.data[i] >> 31) {
-						Temp.data[i + 1]--;
-						Temp.data[i] &= ~(1 << 31);
-					}
-				}
-				auto iter = Temp.data.end() - 1, init = Temp.data.begin();
-				while ((!*iter) && iter != init) {
-					--iter;
-				}
-				Temp.data.erase(iter + 1, Temp.data.end());
-				return Temp;
-			}
-			else {
-				int sz = min(this->data.size(), bb.data.size());
-				Temp = ;
-				for (int i = 0;i < sz;++i) {
-					Temp.data[i] -= bb.data[i];
-				}
-				sz = max(this->data.size(), bb.data.size());
-				for (int i = 0;i < sz;++i) {
-					if (Temp.data[i] >> 31) {
-						Temp.data[i + 1]--;
-						Temp.data[i] &= ~(1 << 31);
-					}
-				}
-				auto iter = Temp.data.end() - 1, init = Temp.data.begin();
-				while ((!*iter) && iter != init) {
-					--iter;
-				}
-				Temp.data.erase(iter + 1, Temp.data.end());
-				return Temp;
-			}
-		}
-		else {
-			int sz = min(this->data.size(), bb.data.size());
-			for (int i = 0;i < sz;++i) {
-				Temp.data[i] += bb.data[i];
-			}
-			sz = max(this->data.size(), bb.data.size());
-			for (int i = 0;i < sz - 1;++i) {
-				if (Temp.data[i] >> 31) {
-					Temp.data[i + 1]++;
-					Temp.data[i] &= ~(1 << 31);
-				}
-			}
-			if (Temp.data[sz] >> 31) {
-				Temp.data.push_back(1);
-				Temp.data[sz] &= ~(1 << 31);
-			}
-			return Temp;
-			
-		}
-	}
-	else {
 		if (this->nega) {
 			Temp.nega = 1;
 			if (bb < Temp) {
@@ -281,8 +216,73 @@ Int& Int::operator+(Int& bb) {
 				return Temp;
 			}
 			else {
+				Temp.nega = 0;
+				int sz = min(this->data.size(), bb.data.size());
+				for (int i = 0;i < sz;++i) {
+					Temp.data[i] -= bb.data[i];
+				}
+				sz = max(this->data.size(), bb.data.size());
+				for (int i = 0;i < sz;++i) {
+					if (Temp.data[i] >> 31) {
+						Temp.data[i + 1]--;
+						Temp.data[i] &= ~(1 << 31);
+					}
+				}
+				auto iter = Temp.data.end() - 1, init = Temp.data.begin();
+				while ((!*iter) && iter != init) {
+					--iter;
+				}
+				if (iter + 1 != Temp.data.end()) {
+					Temp.data.erase(iter + 1, Temp.data.end());
+				}
+				return Temp;
+			}
+		}
+		else {
+			int sz = min(this->data.size(), bb.data.size());
+			for (int i = 0;i < sz;++i) {
+				Temp.data[i] += bb.data[i];
+			}
+			sz = max(this->data.size(), bb.data.size());
+			for (int i = 0;i < sz - 1;++i) {
+				if (Temp.data[i] >> 31) {
+					Temp.data[i + 1]++;
+					Temp.data[i] &= ~(1 << 31);
+				}
+			}
+			if (Temp.data[sz] >> 31) {
+				Temp.data.push_back(1);
+				Temp.data[sz] &= ~(1 << 31);
+			}
+			return Temp;
+		}
+	}
+	else {
+		if (this->nega) {
+			Temp.nega = 0;
+			if (bb > Temp) {
 				int sz = min(this->data.size(), bb.data.size());
 				Temp = bb;
+				for (int i = 0;i < sz;++i) {
+					Temp.data[i] -= this->data[i];
+				}
+				sz = max(this->data.size(), bb.data.size());
+				for (int i = 0;i < sz;++i) {
+					if (Temp.data[i] >> 31) {
+						Temp.data[i + 1]--;
+						Temp.data[i] &= ~(1 << 31);
+					}
+				}
+				auto iter = Temp.data.end() - 1, init = Temp.data.begin();
+				while ((!*iter) && iter != init) {
+					--iter;
+				}
+				Temp.data.erase(iter + 1, Temp.data.end());
+				return Temp;
+			}
+			else {
+				Temp.nega = 1;
+				int sz = min(this->data.size(), bb.data.size());
 				for (int i = 0;i < sz;++i) {
 					Temp.data[i] -= bb.data[i];
 				}
@@ -321,6 +321,7 @@ Int& Int::operator+(Int& bb) {
 		}
 	}
 }
+
 
 inline bool CarryOver(char& in) {
 	if ((in - '0') % 2) {
